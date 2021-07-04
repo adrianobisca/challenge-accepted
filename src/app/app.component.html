@@ -30,6 +30,8 @@
           class="nav-link"
           type="button"
           role="tab"
+          (click)="setList(lista.id)"
+          [class.active]="lista.id === listSelected"
         >
           {{ lista.title }}
         </button>
@@ -58,7 +60,7 @@
         <div class="p-2" role="tabpanel">
           <ul class="list-group list-group-flush">
             <li
-              *ngFor="let tarefa of tarefas"
+              *ngFor="let tarefa of filteredTasks"
               class="
                 list-group-item
                 d-flex
