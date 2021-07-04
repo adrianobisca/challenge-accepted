@@ -5,6 +5,7 @@ import { tap } from 'rxjs/operators';
 import { EndpointsService } from './services/endpoints.service';
 import { StatesService } from './services/states.service';
 
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -51,5 +52,6 @@ export class AppComponent implements OnInit {
     this.filteredTasks = this.tarefas.filter(
       (task: any) => task.listId === this.listSelected
     );
+
   }
 }
