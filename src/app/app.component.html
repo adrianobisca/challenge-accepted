@@ -46,7 +46,7 @@
           <input
             type="text"
             class="form-control"
-            placeholder="Nova atividade na lista {{listSelected.title}}"
+            placeholder="Nova atividade na lista {{ listSelected.title }}"
             formControlName="title"
             [ngClass]="{ 'is-invalid': submittedTask && hasErrorTask('title') }"
           />
@@ -78,7 +78,7 @@
                   type="checkbox"
                   value=""
                   (click)="setTask(tarefa.id, !tarefa.isChecked)"
-                  [attr.checked]="tarefa.isChecked  ? true : null"
+                  [attr.checked]="tarefa.isChecked ? true : null"
                 />
                 {{ tarefa.title }}
               </div>
@@ -90,12 +90,44 @@
                 <i class="bi bi-trash"></i>
               </button>
             </li>
-            <li *ngIf="filteredTasks ? filteredTasks.length === 0 : null" class="list-group-item">
+            <li
+              *ngIf="filteredTasks ? filteredTasks.length === 0 : null"
+              class="list-group-item"
+            >
               Sem tarefas nessa lista!
             </li>
           </ul>
         </div>
       </div>
+    </div>
+  </div>
+</section>
+
+<section class="container">
+  <div class="d-flex border rounded p-3 mb-3">
+    <div class="px-2">
+      <ng-container *ngIf="listas$ | async as listas; else loadingList">
+        <div class="d-flex border rounded p-3 mb-3">
+          <app-list [listas]="listas"></app-list>
+        </div>
+      </ng-container>
+
+      <ng-template #loadingList>
+        <section class="container">
+          <p>CARREGANDO</p>
+        </section>
+      </ng-template>
+    </div>
+
+    <div class="flex-grow-1 px-2">
+      <ng-container *ngIf="tarefas$ | async as tarefas; else loadingTask">
+        <app-task [tarefas]="tarefas"></app-task>
+      </ng-container>
+      <ng-template #loadingTask>
+        <section class="container">
+          <p>CARREGANDO</p>
+        </section>
+      </ng-template>
     </div>
   </div>
 </section>

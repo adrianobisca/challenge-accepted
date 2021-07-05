@@ -15,7 +15,8 @@ import { StatesService } from './services/states.service';
 })
 export class AppComponent implements OnInit {
   listas$!: Observable<Lista[]>;
-  tarefas!: Tarefa[];
+  tarefas$!: Observable<Tarefa[]>;
+  tarefas: Tarefa[] = [];
   listSelected: any;
   taskSelected: any;
   filteredTasks: any;
@@ -56,10 +57,11 @@ export class AppComponent implements OnInit {
   }
 
   loadTask() {
-    this.endpointsService.getTasks().subscribe((data) => {
-      this.tarefas = data;
-      this.filterTasks();
-    });
+    this.tarefas$ = this.endpointsService.getTasks();
+    //this.endpointsService.getTasks().subscribe((data) => {
+    //  this.tarefas = data;
+    //  this.filterTasks();
+   // });
   }
 
   setTask(id: number, isChecked: boolean) {

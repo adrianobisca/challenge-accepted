@@ -4,10 +4,14 @@ import { HttpClientModule } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { ListComponent } from './components/list/list.component';
+import { TaskComponent } from './components/task/task.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    ListComponent,
+    TaskComponent
   ],
   imports: [
     BrowserModule,
