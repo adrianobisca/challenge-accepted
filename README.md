@@ -1,27 +1,43 @@
-# ChallengeAccepted
+# To do list
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 12.1.0.
+Desafio Fluig ![alt text](https://vs-fluig.gallerycdn.vsassets.io/extensions/vs-fluig/vs-fluig/0.5.0/1600367528728/Microsoft.VisualStudio.Services.Icons.Default "Logo Fluig")
 
-## Development server
+## Para rodar corretamente
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+1. Instalar globalmente o serve-json
 
-## Code scaffolding
+```javascript
+npm i -g json-server
+```
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+2. Instalar as dependências
 
-## Build
+```javascript
+npm install
+```
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+3. Rodar o servidor via json-server no http://localhost:3000
 
-## Running unit tests
+```javascript
+npm run serve
+```
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+4. Buildar e disponibilizar a aplicação no http://localhost:4200
 
-## Running end-to-end tests
+```javascript
+npm run start
+```
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+## Proposta da aplicação
 
-## Further help
+* Ser possível adicionar lista
+* Ser possível adicionar tarefa
+* Ser possível marcar como feita tarefa
+* Ser possível deletar tarefa
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+## Propostas de melhoria futura
+
+* refatorar o código
+* componentizar para facilitar o tratamento das mudanças de estados
+
+
