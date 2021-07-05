@@ -13,13 +13,13 @@ export class EndpointsService {
   getLists() {
     return this.httpClient
       .get<Lista[]>('http://localhost:3000/lists/')
-      .pipe(tap(console.log));
+      .pipe(tap(console.log),take(1));
   }
 
   getTasks() {
     return this.httpClient
       .get<Tarefa[]>('http://localhost:3000/tasks/')
-      .pipe(tap(console.log));
+      .pipe(tap(console.log),take(1));
   }
 
   postLists(list: Lista) {
@@ -50,7 +50,7 @@ export class EndpointsService {
     console.log(body);
     return this.httpClient.patch('http://localhost:3000/tasks/' + task, body, {
       headers: headers,
-    });
+    }).pipe(take(1));
   }
 
   deleteTasks(task: number) {

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, DoCheck, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Observer, Subscription } from 'rxjs';
 import { Observable } from 'rxjs';
@@ -39,13 +39,6 @@ export class AppComponent implements OnInit {
       title: [null, [Validators.required, Validators.minLength(1)]],
     });
 
-    this.listas$ = this.endpointsService.getLists();
-
-    this.endpointsService.getTasks().subscribe((data) => {
-      this.tarefas = data;
-      this.filterTasks();
-    });
-
     this.statesService
       .getTaskSelected()
       .subscribe((data) => (this.taskSelected = data));
@@ -53,26 +46,42 @@ export class AppComponent implements OnInit {
     this.statesService
       .getListSelected()
       .subscribe((data) => (this.listSelected = data));
+
+    this.loadList();
+    this.loadTask();
+  }
+
+  loadList() {
+    this.listas$ = this.endpointsService.getLists();
+  }
+
+  loadTask() {
+    this.endpointsService.getTasks().subscribe((data) => {
+      this.tarefas = data;
+      this.filterTasks();
+    });
   }
 
   setTask(id: number, isChecked: boolean) {
     console.log(id, id);
-    this.endpointsService.patchTasks(id, isChecked);
+    this.endpointsService.patchTasks(id, isChecked).subscribe();
+    this.loadTask();
   }
 
   deleteTask(id: number) {
     console.log(id, id, id);
     this.endpointsService.deleteTasks(id).subscribe();
+    this.loadTask();
   }
 
-  setList(id: number) {
-    this.statesService.setListSelected(id);
+  setList(obj: Lista) {
+    this.statesService.setListSelected(obj);
     this.filterTasks();
   }
 
   filterTasks() {
     this.filteredTasks = this.tarefas.filter(
-      (task: any) => task.listId === this.listSelected
+      (task: any) => task.listId === this.listSelected.id
     );
   }
 
@@ -86,7 +95,10 @@ export class AppComponent implements OnInit {
         .postLists({
           title: this.formList.value.title,
         })
-        .subscribe(console.log);
+        .subscribe(() => {
+          console.log();
+          this.loadList();
+        });
     }
   }
 
@@ -98,11 +110,14 @@ export class AppComponent implements OnInit {
 
       this.endpointsService
         .postTasks({
-          listId: this.listSelected,
+          listId: this.listSelected.id,
           title: this.formTask.value.title,
           isChecked: false,
         })
-        .subscribe(console.log);
+        .subscribe(() => {
+          console.log();
+          this.loadTask();
+        });
     }
   }
 

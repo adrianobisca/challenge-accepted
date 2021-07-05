@@ -1,13 +1,22 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Subject } from 'rxjs';
 import { tap } from 'rxjs/operators';
+import { Lista } from '../models/lista';
+import { Tarefa } from '../models/tarefa';
 
 @Injectable({
   providedIn: 'root',
 })
 export class StatesService {
-  private taskSelected = new BehaviorSubject(1);
-  private listSelected = new BehaviorSubject(1);
+  private taskDefault: Tarefa = {
+    id: 1,
+    listId: 1,
+    title: '',
+    isChecked: false,
+  };
+  private listDefault: Lista = { id: 1, title: '' };
+  private taskSelected = new BehaviorSubject(this.taskDefault);
+  private listSelected = new BehaviorSubject(this.listDefault);
   private filteredTasks = new Subject();
 
   task = this.taskSelected.asObservable();
@@ -20,16 +29,15 @@ export class StatesService {
     return this.task.pipe(tap(console.log));
   }
 
-  setTaskSelected(id: number) {
-    this.taskSelected.next(id);
+  setTaskSelected(obj: Tarefa) {
+    this.taskSelected.next(obj);
   }
 
   getListSelected() {
     return this.list.pipe(tap(console.log));
   }
 
-  setListSelected(id: number) {
-    this.listSelected.next(id);
+  setListSelected(obj: Lista) {
+    this.listSelected.next(obj);
   }
-
 }

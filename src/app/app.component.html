@@ -32,8 +32,8 @@
           class="nav-link"
           type="button"
           role="tab"
-          (click)="setList(lista.id ? lista.id : 0)"
-          [class.active]="lista.id === listSelected"
+          (click)="setList(lista)"
+          [class.active]="lista.id === listSelected.id"
         >
           {{ lista.title }}
         </button>
@@ -46,7 +46,7 @@
           <input
             type="text"
             class="form-control"
-            placeholder="Nova atividade"
+            placeholder="Nova atividade na lista {{listSelected.title}}"
             formControlName="title"
             [ngClass]="{ 'is-invalid': submittedTask && hasErrorTask('title') }"
           />
@@ -78,6 +78,7 @@
                   type="checkbox"
                   value=""
                   (click)="setTask(tarefa.id, !tarefa.isChecked)"
+                  [attr.checked]="tarefa.isChecked  ? true : null"
                 />
                 {{ tarefa.title }}
               </div>
