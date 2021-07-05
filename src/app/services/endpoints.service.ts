@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { tap } from 'rxjs/operators';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { take, tap } from 'rxjs/operators';
+import { Lista } from '../models/lista';
+import { Tarefa } from '../models/tarefa';
 
 @Injectable({
   providedIn: 'root',
@@ -10,26 +12,50 @@ export class EndpointsService {
 
   getLists() {
     return this.httpClient
-      .get('http://localhost:3000/lists/')
+      .get<Lista[]>('http://localhost:3000/lists/')
       .pipe(tap(console.log));
   }
 
   getTasks() {
     return this.httpClient
-      .get('http://localhost:3000/tasks/')
+      .get<Tarefa[]>('http://localhost:3000/tasks/')
       .pipe(tap(console.log));
   }
 
-  postLists(list: any) {
+  postLists(list: Lista) {
+    const headers = { 'content-type': 'application/json' };
+    const body = JSON.stringify(list);
+
+    console.log(body);
     return this.httpClient
       .post('http://localhost:3000/lists/', list)
-      .pipe(tap(console.log));
+      .pipe(take(1));
   }
 
-  postTasks(task: any) {
+  postTasks(task: Tarefa) {
+    const headers = { 'content-type': 'application/json' };
+    const body = JSON.stringify(task);
+
+    console.log(body);
     return this.httpClient
-      .post('http://localhost:3000/tasks/', task)
-      .pipe(tap(console.log));
+      .post('http://localhost:3000/tasks', body, { headers: headers })
+      .pipe(take(1));
   }
 
+  patchTasks(task: number, taskState: boolean) {
+    const headers = { 'content-type': 'application/json' };
+    const body = JSON.stringify({
+      isChecked: taskState,
+    });
+    console.log(body);
+    return this.httpClient.patch('http://localhost:3000/tasks/' + task, body, {
+      headers: headers,
+    });
+  }
+
+  deleteTasks(task: number) {
+    return this.httpClient
+      .delete('http://localhost:3000/tasks/' + task)
+      .pipe(take(1));
+  }
 }

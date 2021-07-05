@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Subject } from 'rxjs';
-import { map, tap } from 'rxjs/operators';
+import { tap } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root',
@@ -32,16 +32,4 @@ export class StatesService {
     this.listSelected.next(id);
   }
 
-  getFilteredTasks() {
-    return this.filtered.pipe(
-      tap(console.log),
-      map((data) =>
-        data.filter((task: any) => task.listId === this.listSelected)
-      )
-    );
-  }
-
-  setFilteredTasks(task: Object) {
-    this.filteredTasks.next(task);
-  }
 }

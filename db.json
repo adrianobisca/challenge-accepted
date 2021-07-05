@@ -7,84 +7,80 @@
     {
       "id": 2,
       "title": "Trabalho"
+    },
+    {
+      "title": "Hammerfall",
+      "id": 3
+    },
+    {
+      "title": "josue",
+      "id": 4
+    },
+    {
+      "title": "mouse card",
+      "id": 5
     }
   ],
   "tasks": [
     {
-      "id": 1,
+      "listId": 2,
+      "title": "Organização das tarefas",
+      "id": 4,
+      "isChecked": false
+    },
+    {
       "listId": 1,
-      "title": "Comprar arroz"
-    },
-    {
-      "id": 2,
-      "listId": 1,
-      "title": "Comprar feijão"
-    },
-    {
-      "id": 3,
-      "listId": 2,
-      "title": "Reunião às 10:00"
-    },
-    {
-      "listId": 2,
-      "title": "Organização das tarefas",
-      "id": 4
-    },
-    {
-      "listId": 2,
-      "title": "Organização das tarefas",
-      "id": 5
-    },
-    {
-      "listId": 2,
-      "title": "Organização das tarefas",
+      "title": "Comprar legumes",
+      "isChecked": false,
       "id": 6
     },
     {
-      "listId": 2,
-      "title": "Organização das tarefas",
-      "id": 7
-    },
-    {
-      "listId": 2,
-      "title": "Organização das tarefas",
-      "id": 8
-    },
-    {
-      "listId": 2,
-      "title": "Organização das tarefas",
-      "id": 9
-    },
-    {
-      "listId": 2,
-      "title": "Organização das tarefas",
-      "id": 10
-    },
-    {
-      "listId": 2,
-      "title": "Organização das tarefas",
-      "id": 11
-    },
-    {
-      "listId": 2,
-      "title": "Organização das tarefas",
       "id": 12
     },
     {
-      "listId": 2,
-      "title": "Organização das tarefas",
       "id": 13
     },
     {
       "listId": 2,
-      "title": "Organização das tarefas",
-      "id": 14
+      "title": "tomilho",
+      "isChecked": false,
+      "id": 27
     },
     {
-      "listId": 2,
-      "title": "Organização das tarefas",
-      "id": 15
+      "listId": 1,
+      "title": "asdasd",
+      "isChecked": false,
+      "id": 36
+    },
+    {
+      "listId": 1,
+      "title": "asdasd",
+      "isChecked": false,
+      "id": 37
+    },
+    {
+      "listId": 1,
+      "title": "asdrubal",
+      "isChecked": false,
+      "id": 38
+    },
+    {
+      "listId": 1,
+      "title": "hortovaldo",
+      "isChecked": false,
+      "id": 39
+    },
+    {
+      "listId": 3,
+      "title": "asdasdasd 12111111111111111",
+      "isChecked": false,
+      "id": 40
+    },
+    {
+      "listId": 4,
+      "title": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "isChecked": false,
+      "id": 41
     }
   ]
 }
-
