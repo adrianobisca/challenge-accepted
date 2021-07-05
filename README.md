@@ -1,27 +1,44 @@
-# ChallengeAccepted
+# TO-DO
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 12.1.0.
+Desafio Fluig
 
-## Development server
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+## Para rodar corretamente
 
-## Code scaffolding
+1. Instalar globalmente o serve-json
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+    ```javascript
+    npm i -g json-server
+    ```
 
-## Build
+2. Instalar as dependências
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+    ```javascript
+    npm install
+    ```
 
-## Running unit tests
+3. Rodar o servidor via json-server no http://localhost:3000
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+    ```javascript
+    npm run serve
+    ```
 
-## Running end-to-end tests
+4. Buildar e disponibilizar a aplicação no http://localhost:4200
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+    ```javascript
+    npm run start
+    ```
 
-## Further help
+## Proposta da aplicação
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+* Ser possível adicionar lista
+* Ser possível adicionar tarefa
+* Ser possível marcar como feita tarefa
+* Ser possível deletar tarefa
+
+## Propostas de melhoria futura
+
+* refatorar o código
+* componentizar para facilitar o tratamento das mudanças de estados
+
+
