@@ -1,0 +1,25 @@
+http://localhost:3000/tasks
+
+###
+
+PATCH http://localhost:3000/tasks/2
+content-type: application/json
+
+{
+    "isChecked": true
+}
+
+###
+
+DELETE http://localhost:3000/tasks/20
+
+###
+
+POST http://localhost:3000/tasks
+content-type: application/json
+
+  {
+    "listId": 1,
+    "title": "Comprar mercado",
+    "isChecked": false
+  }
