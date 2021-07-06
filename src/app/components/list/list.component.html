@@ -1,0 +1,18 @@
+<ng-container *ngIf="listas">
+  <div
+    class="nav flex-column nav-pills"
+    role="tablist"
+    aria-orientation="vertical"
+  >
+    <button
+      *ngFor="let lista of listas"
+      class="nav-link"
+      type="button"
+      role="tab"
+      (click)="setList(lista)"
+      [class.active]="lista.id === listSelected.id"
+    >
+      {{ lista.title }}
+    </button>
+  </div>
+</ng-container>
