@@ -1,0 +1,18 @@
+<form novalidate [formGroup]="formTask">
+  <div class="input-group mb-3">
+    <input
+      type="text"
+      class="form-control"
+      placeholder="Nova atividade na lista {{ listSelected.title }}"
+      formControlName="title"
+      [ngClass]="{ 'is-invalid': submittedTask && hasErrorTask('title') }"
+    />
+    <button
+      class="btn btn-outline-secondary"
+      type="submit"
+      (click)="onSubmitTask()"
+    >
+      Adicionar
+    </button>
+  </div>
+</form>

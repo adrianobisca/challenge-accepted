@@ -1,0 +1,18 @@
+<form novalidate [formGroup]="formList">
+  <div class="input-group mb-3">
+    <input
+      type="text"
+      class="form-control"
+      placeholder="Nova lista"
+      formControlName="title"
+      [ngClass]="{ 'is-invalid': submittedList && hasErrorList('title') }"
+    />
+    <button
+      class="btn btn-outline-secondary"
+      type="submit"
+      (click)="onSubmitList()"
+    >
+      Adicionar
+    </button>
+  </div>
+</form>
