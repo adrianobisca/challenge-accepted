@@ -9,11 +9,11 @@ import { StatesService } from 'src/app/services/states.service';
   templateUrl: './task.component.html',
   styleUrls: ['./task.component.scss'],
 })
-export class TaskComponent implements OnInit {
+export class TaskComponent implements OnInit, OnChanges {
   @Input() tarefas: Tarefa[] = [];
-  //@Input() lista: Lista = { id: 1, title: '' };
+  @Input() listSelected: Lista = { id: 1, title: '' };
+  @Input() receivedSubmitTask: string = '';
 
-  listSelected: Lista = { id: 1, title: '' };
   filteredTasks: Tarefa[] = [];
 
   constructor(
@@ -21,11 +21,12 @@ export class TaskComponent implements OnInit {
     private endpointsService: EndpointsService
   ) {}
 
-  ngOnInit(): void {
-    this.statesService.getListSelected().subscribe((data) => {
-      this.listSelected = data;
-      this.filterTasks();
-    });
+  ngOnInit(): void {}
+
+  ngOnChanges() {
+    console.log('listSelected', this.listSelected);
+    console.log('receivedSubmitTask', this.receivedSubmitTask);
+    this.filterTasks();
   }
 
   filterTasks() {
@@ -38,8 +39,8 @@ export class TaskComponent implements OnInit {
     const id = tarefa.id ? tarefa.id : 0;
     const indexTarefa = this.filteredTasks.findIndex((obj) => obj.id === id);
 
-    this.filteredTasks[indexTarefa].isChecked = !tarefa.isChecked;
     this.endpointsService.patchTasks(id, !tarefa.isChecked).subscribe();
+    this.filteredTasks[indexTarefa].isChecked = !tarefa.isChecked;
   }
 
   deleteTask(tarefa: Tarefa) {

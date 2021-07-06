@@ -3,109 +3,10 @@
 
   <div class="d-flex border rounded p-3 mb-3">
     <div class="px-2">
-      <form novalidate [formGroup]="formList">
-        <div class="input-group mb-3">
-          <input
-            type="text"
-            class="form-control"
-            placeholder="Nova lista"
-            formControlName="title"
-            [ngClass]="{ 'is-invalid': submittedList && hasErrorList('title') }"
-          />
-          <button
-            class="btn btn-outline-secondary"
-            type="submit"
-            (click)="onSubmitList()"
-          >
-            Adicionar
-          </button>
-        </div>
-      </form>
+      <app-list-form
+        (submitListEmitted)="receiveSubmitList($event)"
+      ></app-list-form>
 
-      <div
-        class="nav flex-column nav-pills"
-        role="tablist"
-        aria-orientation="vertical"
-      >
-        <button
-          *ngFor="let lista of listas$ | async"
-          class="nav-link"
-          type="button"
-          role="tab"
-          (click)="setList(lista)"
-          [class.active]="lista.id === listSelected.id"
-        >
-          {{ lista.title }}
-        </button>
-      </div>
-    </div>
-
-    <div class="flex-grow-1 px-2">
-      <form novalidate [formGroup]="formTask">
-        <div class="input-group mb-3">
-          <input
-            type="text"
-            class="form-control"
-            placeholder="Nova atividade na lista {{ listSelected.title }}"
-            formControlName="title"
-            [ngClass]="{ 'is-invalid': submittedTask && hasErrorTask('title') }"
-          />
-          <button
-            class="btn btn-outline-secondary"
-            type="submit"
-            (click)="onSubmitTask()"
-          >
-            Adicionar
-          </button>
-        </div>
-      </form>
-
-      <div class="tab-content border rounded">
-        <div class="p-2" role="tabpanel">
-          <ul class="list-group list-group-flush">
-            <li
-              *ngFor="let tarefa of filteredTasks"
-              class="
-                list-group-item
-                d-flex
-                justify-content-between
-                align-items-center
-              "
-            >
-              <div [class.text-decoration-line-through]="tarefa.isChecked">
-                <input
-                  class="form-check-input me-1"
-                  type="checkbox"
-                  value=""
-                  (click)="setTask(tarefa.id, !tarefa.isChecked)"
-                  [attr.checked]="tarefa.isChecked ? true : null"
-                />
-                {{ tarefa.title }}
-              </div>
-              <button
-                type="button"
-                class="btn btn-outline-danger"
-                (click)="deleteTask(tarefa.id)"
-              >
-                <i class="bi bi-trash"></i>
-              </button>
-            </li>
-            <li
-              *ngIf="filteredTasks ? filteredTasks.length === 0 : null"
-              class="list-group-item"
-            >
-              Sem tarefas nessa lista!
-            </li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="container">
-  <div class="d-flex border rounded p-3 mb-3">
-    <div class="px-2">
       <ng-container *ngIf="listas$ | async as listas; else loadingList">
         <div class="d-flex border rounded p-3 mb-3">
           <app-list [listas]="listas"></app-list>
@@ -114,18 +15,27 @@
 
       <ng-template #loadingList>
         <section class="container">
-          <p>CARREGANDO</p>
+          <p>CARREGANDO LIST</p>
         </section>
       </ng-template>
     </div>
 
     <div class="flex-grow-1 px-2">
+      <app-task-form
+        [listSelected]="listSelected"
+        (submitTaskEmitted)="receiveSubmitTask($event)"
+      ></app-task-form>
+
       <ng-container *ngIf="tarefas$ | async as tarefas; else loadingTask">
-        <app-task [tarefas]="tarefas"></app-task>
+        <app-task
+          [tarefas]="tarefas"
+          [listSelected]="listSelected"
+          [receivedSubmitTask]="receivedSubmitTask"
+        ></app-task>
       </ng-container>
       <ng-template #loadingTask>
         <section class="container">
-          <p>CARREGANDO</p>
+          <p>CARREGANDO TASK</p>
         </section>
       </ng-template>
     </div>
