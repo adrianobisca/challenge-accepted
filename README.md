@@ -36,9 +36,3 @@ Desafio Fluig
 * Ser possível marcar como feita tarefa
 * Ser possível deletar tarefa
 
-## Propostas de melhoria futura
-
-* refatorar o código
-* componentizar para facilitar o tratamento das mudanças de estados
-
-
