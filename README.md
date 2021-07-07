@@ -32,6 +32,7 @@ Desafio Fluig
 ## Proposta da aplicação
 
 * Ser possível adicionar lista
+* Ser possível deletar lista
 * Ser possível adicionar tarefa
 * Ser possível marcar como feita tarefa
 * Ser possível deletar tarefa
