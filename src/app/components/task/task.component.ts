@@ -16,16 +16,11 @@ export class TaskComponent implements OnInit, OnChanges {
 
   filteredTasks: Tarefa[] = [];
 
-  constructor(
-    private statesService: StatesService,
-    private endpointsService: EndpointsService
-  ) {}
+  constructor(private endpointsService: EndpointsService) {}
 
   ngOnInit(): void {}
 
   ngOnChanges() {
-    console.log('listSelected', this.listSelected);
-    console.log('receivedSubmitTask', this.receivedSubmitTask);
     this.filterTasks();
   }
 

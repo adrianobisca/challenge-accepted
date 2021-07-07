@@ -8,7 +8,7 @@
       ></app-list-form>
 
       <ng-container *ngIf="listas$ | async as listas; else loadingList">
-        <div class="d-flex border rounded p-3 mb-3">
+        <div class="border rounded p-3 mb-3">
           <app-list [listas]="listas"></app-list>
         </div>
       </ng-container>

@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Subject } from 'rxjs';
-import { tap } from 'rxjs/operators';
 import { Lista } from '../models/lista';
 
 @Injectable({
@@ -15,7 +14,7 @@ export class StatesService {
   constructor() {}
 
   getListSelected() {
-    return this.list.pipe(tap(console.log));
+    return this.list;
   }
 
   setListSelected(obj: Lista) {
