@@ -4,15 +4,23 @@
     role="tablist"
     aria-orientation="vertical"
   >
-    <button
-      *ngFor="let lista of listas"
-      class="nav-link"
-      type="button"
-      role="tab"
-      (click)="setList(lista)"
-      [class.active]="lista.id === listSelected.id"
-    >
-      {{ lista.title }}
-    </button>
+    <div *ngFor="let lista of listas" class="d-flex">
+      <button
+        class="nav-link flex-grow-1"
+        type="button"
+        role="tab"
+        (click)="setList(lista)"
+        [class.active]="lista.id === listSelected.id"
+      >
+        {{ lista.title }}
+      </button>
+      <button
+        type="button"
+        class="btn btn-outline-danger border-0 ms-3"
+        (click)="deleteList(lista)"
+      >
+        <i class="bi bi-trash"></i>
+      </button>
+    </div>
   </div>
 </ng-container>

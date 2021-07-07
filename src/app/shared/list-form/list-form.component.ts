@@ -19,20 +19,20 @@ export class ListFormComponent implements OnInit {
   ) {}
   ngOnInit(): void {
     this.formList = this.formBuilder.group({
-      title: [null, [Validators.required, Validators.minLength(1)]],
+      title: ['', [Validators.required, Validators.minLength(1)]],
     });
   }
 
   onSubmitList() {
     this.submittedList = true;
-    console.log(this.formList.value);
     if (this.formList.valid) {
       this.endpointsService
         .postLists({
           title: this.formList.value.title,
         })
         .subscribe(() => {
-          console.log();
+          this.submittedList = false;
+          this.formList.reset();
           this.submitListEmitted.emit('');
         });
     }

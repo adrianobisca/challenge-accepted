@@ -13,20 +13,19 @@ export class EndpointsService {
   getLists() {
     return this.httpClient
       .get<Lista[]>('http://localhost:3000/lists/')
-      .pipe(tap(console.log),take(1));
+      .pipe(tap(console.log), take(1));
   }
 
   getTasks() {
     return this.httpClient
       .get<Tarefa[]>('http://localhost:3000/tasks/')
-      .pipe(tap(console.log),take(1));
+      .pipe(tap(console.log), take(1));
   }
 
   postLists(list: Lista) {
     const headers = { 'content-type': 'application/json' };
     const body = JSON.stringify(list);
 
-    console.log(body);
     return this.httpClient
       .post('http://localhost:3000/lists/', list)
       .pipe(take(1));
@@ -36,7 +35,6 @@ export class EndpointsService {
     const headers = { 'content-type': 'application/json' };
     const body = JSON.stringify(task);
 
-    console.log(body);
     return this.httpClient
       .post('http://localhost:3000/tasks', body, { headers: headers })
       .pipe(take(1));
@@ -47,15 +45,22 @@ export class EndpointsService {
     const body = JSON.stringify({
       isChecked: taskState,
     });
-    console.log(body);
-    return this.httpClient.patch('http://localhost:3000/tasks/' + task, body, {
-      headers: headers,
-    }).pipe(take(1));
+    return this.httpClient
+      .patch('http://localhost:3000/tasks/' + task, body, {
+        headers: headers,
+      })
+      .pipe(take(1));
   }
 
   deleteTasks(task: number) {
     return this.httpClient
       .delete('http://localhost:3000/tasks/' + task)
+      .pipe(take(1));
+  }
+
+  deleteLists(list: number) {
+    return this.httpClient
+      .delete('http://localhost:3000/lists/' + list)
       .pipe(take(1));
   }
 }

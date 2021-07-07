@@ -23,17 +23,15 @@ export class TaskFormComponent implements OnInit {
 
   ngOnInit(): void {
     this.formTask = this.formBuilder.group({
-      title: [null, [Validators.required, Validators.minLength(1)]],
+      title: ['', [Validators.required, Validators.minLength(1)]],
     });
   }
 
-  ngOnChanges() {
-    console.log('lista', this.listSelected);
-  }
+  ngOnChanges() {}
 
   onSubmitTask() {
     this.submittedTask = true;
-    if (this.formTask.valid) {
+    if (this.formTask.valid && this.listSelected) {
       this.endpointsService
         .postTasks({
           listId: this.listSelected.id ? this.listSelected.id : 0,
@@ -41,8 +39,9 @@ export class TaskFormComponent implements OnInit {
           isChecked: false,
         })
         .subscribe(() => {
-          console.log();
-          this.submitTaskEmitted.emit('')
+          this.submittedTask = false;
+          this.formTask.reset();
+          this.submitTaskEmitted.emit('');
         });
     }
   }
