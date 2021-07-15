@@ -1,26 +1,24 @@
 <section class="container">
   <h1 class="text-center p-5">Lista de Afazeres</h1>
 
-  <div class="d-flex border rounded p-3 mb-3">
-    <div class="px-2">
+  <div class="d-flex border rounded p-3">
+    <div class="me-2">
       <app-list-form
         (submitListEmitted)="receiveSubmitList($event)"
       ></app-list-form>
 
       <ng-container *ngIf="listas$ | async as listas; else loadingList">
-        <div class="border rounded p-3 mb-3">
+        <div class="border rounded p-3">
           <app-list [listas]="listas"></app-list>
         </div>
       </ng-container>
 
       <ng-template #loadingList>
-        <section class="container">
-          <p>CARREGANDO LIST</p>
-        </section>
+        <app-spinner></app-spinner>
       </ng-template>
     </div>
 
-    <div class="flex-grow-1 px-2">
+    <div class="flex-grow-1 ms-2">
       <app-task-form
         [listSelected]="listSelected"
         (submitTaskEmitted)="receiveSubmitTask($event)"
@@ -33,10 +31,9 @@
           [receivedSubmitTask]="receivedSubmitTask"
         ></app-task>
       </ng-container>
+
       <ng-template #loadingTask>
-        <section class="container">
-          <p>CARREGANDO TASK</p>
-        </section>
+        <app-spinner></app-spinner>
       </ng-template>
     </div>
   </div>

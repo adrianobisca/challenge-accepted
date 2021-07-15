@@ -6,8 +6,9 @@ import { AppComponent } from './app.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ListComponent } from './components/list/list.component';
 import { TaskComponent } from './components/task/task.component';
-import { TaskFormComponent } from './shared/task-form/task-form.component';
-import { ListFormComponent } from './shared/list-form/list-form.component';
+import { TaskFormComponent } from './components/task-form/task-form.component';
+import { ListFormComponent } from './components/list-form/list-form.component';
+import { SpinnerComponent } from './shared/spinner/spinner.component';
 
 @NgModule({
   declarations: [
@@ -15,7 +16,8 @@ import { ListFormComponent } from './shared/list-form/list-form.component';
     ListComponent,
     TaskComponent,
     TaskFormComponent,
-    ListFormComponent
+    ListFormComponent,
+    SpinnerComponent
   ],
   imports: [
     BrowserModule,

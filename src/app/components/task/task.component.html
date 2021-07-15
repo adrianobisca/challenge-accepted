@@ -1,41 +1,42 @@
-<ng-container *ngIf="tarefas">
-  <div class="tab-content border rounded">
-    <div class="p-2" role="tabpanel">
-      <ul class="list-group list-group-flush">
-        <li
-          *ngFor="let tarefa of filteredTasks"
-          class="
-            list-group-item
-            d-flex
-            justify-content-between
-            align-items-center
-          "
+<ng-container *ngIf="tarefas; else noTaskData">
+  <div class="p-2 border rounded">
+    <ul class="list-group list-group-flush">
+      <li
+        *ngFor="let tarefa of filteredTasks"
+        class="
+          list-group-item
+          d-flex
+          justify-content-between
+          align-items-center
+        "
+      >
+        <div [class.text-decoration-line-through]="tarefa.isChecked">
+          <input
+            class="form-check-input me-1"
+            type="checkbox"
+            value=""
+            (click)="setTask(tarefa)"
+            [attr.checked]="tarefa.isChecked ? true : null"
+          />
+          {{ tarefa.title }}
+        </div>
+        <button
+          type="button"
+          class="btn btn-outline-danger"
+          (click)="deleteTask(tarefa)"
         >
-          <div [class.text-decoration-line-through]="tarefa.isChecked">
-            <input
-              class="form-check-input me-1"
-              type="checkbox"
-              value=""
-              (click)="setTask(tarefa)"
-              [attr.checked]="tarefa.isChecked ? true : null"
-            />
-            {{ tarefa.title }}
-          </div>
-          <button
-            type="button"
-            class="btn btn-outline-danger"
-            (click)="deleteTask(tarefa)"
-          >
-            <i class="bi bi-trash"></i>
-          </button>
-        </li>
-        <li
-          *ngIf="filteredTasks ? filteredTasks.length === 0 : null"
-          class="list-group-item"
-        >
-          Sem tarefas na lista: {{ listSelected.title }}
-        </li>
-      </ul>
-    </div>
+          <i class="bi bi-trash"></i>
+        </button>
+      </li>
+      <li
+        *ngIf="filteredTasks ? filteredTasks.length === 0 : null"
+        class="list-group-item"
+      >
+        Sem tarefas na lista: {{ listSelected.title }}
+      </li>
+    </ul>
   </div>
 </ng-container>
+<ng-template #noTaskData>
+  <p>deu ruim volte uma casa</p>
+</ng-template>

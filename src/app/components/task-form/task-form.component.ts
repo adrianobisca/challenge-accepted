@@ -2,7 +2,6 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Lista } from 'src/app/models/lista';
 import { EndpointsService } from 'src/app/services/endpoints.service';
-import { StatesService } from 'src/app/services/states.service';
 
 @Component({
   selector: 'app-task-form',
@@ -26,8 +25,6 @@ export class TaskFormComponent implements OnInit {
       title: ['', [Validators.required, Validators.minLength(1)]],
     });
   }
-
-  ngOnChanges() {}
 
   onSubmitTask() {
     this.submittedTask = true;

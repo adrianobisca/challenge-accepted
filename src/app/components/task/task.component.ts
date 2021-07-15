@@ -9,7 +9,7 @@ import { StatesService } from 'src/app/services/states.service';
   templateUrl: './task.component.html',
   styleUrls: ['./task.component.scss'],
 })
-export class TaskComponent implements OnInit, OnChanges {
+export class TaskComponent implements OnChanges {
   @Input() tarefas: Tarefa[] = [];
   @Input() listSelected: Lista = { id: 1, title: '' };
   @Input() receivedSubmitTask: string = '';
@@ -17,8 +17,6 @@ export class TaskComponent implements OnInit, OnChanges {
   filteredTasks: Tarefa[] = [];
 
   constructor(private endpointsService: EndpointsService) {}
-
-  ngOnInit(): void {}
 
   ngOnChanges() {
     this.filterTasks();

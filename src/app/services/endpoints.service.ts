@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { take, tap } from 'rxjs/operators';
+import { HttpClient } from '@angular/common/http';
+import { delay, take } from 'rxjs/operators';
 import { Lista } from '../models/lista';
 import { Tarefa } from '../models/tarefa';
 
@@ -13,13 +13,13 @@ export class EndpointsService {
   getLists() {
     return this.httpClient
       .get<Lista[]>('http://localhost:3000/lists/')
-      .pipe(tap(console.log), take(1));
+      .pipe(take(1), delay(2000));
   }
 
   getTasks() {
     return this.httpClient
       .get<Tarefa[]>('http://localhost:3000/tasks/')
-      .pipe(tap(console.log), take(1));
+      .pipe(take(1), delay(1000));
   }
 
   postLists(list: Lista) {
